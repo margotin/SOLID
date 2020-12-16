@@ -4,6 +4,7 @@ namespace App\Reporting;
 
 use App\Reporting\Format\CSVFormater;
 use App\Reporting\Format\HTMLFormater;
+use App\Reporting\Format\HTMLSpecialFormater;
 use App\Reporting\Format\JSONFormater;
 
 class ReportExtractor
@@ -24,9 +25,12 @@ class ReportExtractor
         $jsonFormater = new JSONFormater();
         $csvFormater = new CSVFormater();
 
+        $htmlSpecialFormater = new HTMLSpecialFormater();
+
         $results[] = $htmlFormateur->formatToHtml($report);
         $results[] = $jsonFormater->formatToJson($report);
         $results[] = $csvFormater->formatToCsv($report);
+        $results[] = $htmlSpecialFormater->formatToHtml($report);
 
         return $results;
     }
