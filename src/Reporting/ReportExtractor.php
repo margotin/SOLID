@@ -2,6 +2,10 @@
 
 namespace App\Reporting;
 
+use App\Reporting\Format\CSVFormater;
+use App\Reporting\Format\HTMLFormater;
+use App\Reporting\Format\JSONFormater;
+
 class ReportExtractor
 {
 
@@ -16,9 +20,13 @@ class ReportExtractor
     public function process(Report $report): array
     {
         $results = [];
+        $htmlFormateur = new HTMLFormater();
+        $jsonFormater = new JSONFormater();
+        $csvFormater = new CSVFormater();
 
-        $results[] = $report->formatToHTML();
-        $results[] = $report->formatToJSON();
+        $results[] = $htmlFormateur->formatToHtml($report);
+        $results[] = $jsonFormater->formatToJson($report);
+        $results[] = $csvFormater->formatToCsv($report);
 
         return $results;
     }

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Reporting\Format\HTMLFormater;
+use App\Reporting\Format\JSONFormater;
 use App\Reporting\Report;
 
 class ReportCreatorController
@@ -23,9 +25,11 @@ class ReportCreatorController
         $report = new Report($date, $title, $data);
 
         if ($format === "html") {
-            $reportResult = $report->formatToHTML();
+            $formater = new HTMLFormater();
+            $reportResult = $formater->formatToHtml($report);
         } else {
-            $reportResult = $report->formatToJSON();
+            $formater = new JSONFormater();
+            $reportResult = $formater->formatToJson($report);
         }
 
         require_once(TEMPLATES_DIR . 'report-creator/result.html.php');
