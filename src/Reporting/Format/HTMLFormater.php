@@ -3,10 +3,11 @@
 namespace App\Reporting\Format;
 
 use App\Reporting\Report;
+use Exception;
 
-class HTMLFormater
+class HTMLFormater implements FormaterInterface
 {
-    public function formatToHtml(Report $report): string
+    public function format(Report $report): string
     {
         $contents = $report->getContents();
         $data = "";
@@ -24,4 +25,9 @@ class HTMLFormater
             </ul>
         ";
     }
+
+    // public function deserialize(string $str): Report
+    // {
+    //     throw new Exception("Il est impossible de désérialiser du HTML");
+    // }
 }

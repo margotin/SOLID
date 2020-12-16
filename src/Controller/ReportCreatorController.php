@@ -26,10 +26,10 @@ class ReportCreatorController
 
         if ($format === "html") {
             $formater = new HTMLFormater();
-            $reportResult = $formater->formatToHtml($report);
+            $reportResult = $formater->format($report);
         } else {
             $formater = new JSONFormater();
-            $reportResult = $formater->formatToJson($report);
+            $reportResult = $formater->format($report);
         }
 
         require_once(TEMPLATES_DIR . 'report-creator/result.html.php');

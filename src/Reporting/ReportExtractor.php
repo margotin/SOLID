@@ -27,10 +27,10 @@ class ReportExtractor
 
         $htmlSpecialFormater = new HTMLSpecialFormater();
 
-        $results[] = $htmlFormateur->formatToHtml($report);
-        $results[] = $jsonFormater->formatToJson($report);
-        $results[] = $csvFormater->formatToCsv($report);
-        $results[] = $htmlSpecialFormater->formatToHtml($report);
+        $results[] = $htmlFormateur->format($report);
+        $results[] = $jsonFormater->format($report);
+        $results[] = $csvFormater->format($report);
+        $results[] = $htmlSpecialFormater->format($report);
 
         return $results;
     }
